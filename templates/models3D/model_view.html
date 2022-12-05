@@ -1,0 +1,21 @@
+{% extends "models3D/index.html" %}
+{% load static %}
+
+{% block title %}Описание модели{% endblock %}
+{% block content %}
+<div class="header">
+  <h5>
+    <a href="{% url 'index' %}">Вернуться в каталог</a>
+  </h5>
+  <h1>{{ name }}</h1>
+</div>
+<div class="row">
+  <ul>
+    {% for sample in content %}
+    <li>
+      <img src="{{ sample.image }}" alt="{{ sample.name }}"/>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

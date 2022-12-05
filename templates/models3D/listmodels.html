@@ -1,0 +1,24 @@
+{% extends "models3D/index.html" %}
+{% load static %}
+
+{% block title %}Список моделей{% endblock %}
+{% block content %}
+<div class="row">
+  <ul>
+    {% for sample in page_models %}
+    <li>
+      <p><a href="/{{ sample }}/">{{ sample }}</a></p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<p>
+  {% if page_models.has_previous %}
+  <a href="?page={{ page_models.previous_page_number }}">Назад</a>
+  {% endif %}
+  {{ page_number }}
+  {% if page_models.has_next %}
+  <a href="?page={{ page_models.next_page_number }}">Вперед</a>
+  {% endif %}
+</p>
+{% endblock %}
