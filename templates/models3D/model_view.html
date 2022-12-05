@@ -5,7 +5,8 @@
 {% block content %}
 <div class="header">
   <h5>
-    <a href="{% url 'index' %}">Вернуться в каталог</a>
+    <!--<a onclick="javascript:history.back(); return false;">Назад</a>-->
+    <input type="button" onclick="history.back();" value="Назад"/>
   </h5>
   <h1>{{ name }}</h1>
 </div>
@@ -13,7 +14,7 @@
   <ul>
     {% for sample in content %}
     <li>
-      <img src="{{ sample.image }}" alt="{{ sample.name }}"/>
+      <img src="{{ sample.image }}" alt="{{ sample.name }}" width="50%" height="50%"/>
     </li>
     {% endfor %}
   </ul>
