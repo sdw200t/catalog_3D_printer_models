@@ -1,24 +1,45 @@
+
 {% extends "models3D/index.html" %}
+
 {% load static %}
 
-{% block title %}Список моделей{% endblock %}
+{% block title %}Модели из личной коллекции{% endblock %}
+
 {% block content %}
-<div class="row">
-  <ul>
-    {% for sample in page_models %}
-    <li>
-      <p><a href="/{{ sample }}/">{{ sample }}</a></p>
-    </li>
+  <p>
+    {% if page_models.has_previous %}
+    <a href="?page={{ page_models.previous_page_number }}">Назад</a>
+    {% endif %}
+    Страница {{ page_number }} из {{ page_models.paginator.num_pages }}
+    {% if page_models.has_next %}
+    <a href="?page={{ page_models.next_page_number }}">Вперед</a>
+    {% endif %}
+  </p>
+
+  <div class="row">
+    {% for sample in list_models %}
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="/{{ sample.name }}/"><img class="card-img-top" src="{{ sample.image }}" alt="{{ sample.name }}"></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="/{{ sample.name }}/">{{ sample.name }}</a>
+            </h4>
+            <p class="card-text">Текст</p>
+
+          </div>
+        </div>
+      </div>
     {% endfor %}
-  </ul>
-</div>
-<p>
-  {% if page_models.has_previous %}
-  <a href="?page={{ page_models.previous_page_number }}">Назад</a>
-  {% endif %}
-  {{ page_number }}
-  {% if page_models.has_next %}
-  <a href="?page={{ page_models.next_page_number }}">Вперед</a>
-  {% endif %}
-</p>
+  </div>
+
+  <p>
+    {% if page_models.has_previous %}
+    <a href="?page={{ page_models.previous_page_number }}">Назад</a>
+    {% endif %}
+    Страница {{ page_number }} из {{ page_models.paginator.num_pages }}
+    {% if page_models.has_next %}
+    <a href="?page={{ page_models.next_page_number }}">Вперед</a>
+    {% endif %}
+  </p> 
 {% endblock %}
